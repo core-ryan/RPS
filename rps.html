@@ -7,8 +7,23 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <button id="rockButton">ROCK</button>
+        <button id="paperButton">PAPER</button>
+        <button id="scissorsButton">SCISSORS</button>
+    </div>
     <script>
         let choices = ["ROCK","PAPER","SCISSORS"];
+
+        const rockSelection = document.getElementById("rockButton");
+        const paperSelection = document.getElementById("paperButton");
+        const scissorsSelection = document.getElementById("scissorsButton");
+
+        let compChoiceResult = getComputerChoice();
+
+        rockSelection.addEventListener("click", function() {playRound("ROCK", getComputerChoice());} );
+        paperSelection.addEventListener("click", function() {playRound("PAPER", getComputerChoice());} );
+        scissorsSelection.addEventListener("click", function() {playRound("SCISSORS", getComputerChoice());} );
 
         function getComputerChoice(){
             return choices[(Math.floor(Math.random() * choices.length))];
@@ -16,6 +31,7 @@
 
         function playRound(playerSelection, computerSelection) {
             // your code here!
+            console.log("Player Chooses: " + playerSelection);
             console.log("Computer chooses: " + computerSelection);
 
             switch (playerSelection){
@@ -53,43 +69,43 @@
                 
         }
  
-        function game(){
-            let playerWins = 0;
-            let computerWins = 0;
+        // function game(){
+        //     let playerWins = 0;
+        //     let computerWins = 0;
 
-            for(let i = 0; i < 5; i++){
-                let playerSelection = "Invalid";
-                let computerSelection = getComputerChoice();
-                //const playerSelection = "rock";
-                while(playerSelection !== "ROCK" && playerSelection !== "PAPER" && playerSelection !== "SCISSORS"){
-                    playerSelection = prompt("Rock, Paper, or Scissors?").toUpperCase();
-                }
+        //     for(let i = 0; i < 5; i++){
+        //         let playerSelection = "Invalid";
+        //         let computerSelection = getComputerChoice();
+        //         //const playerSelection = "rock";
+        //         while(playerSelection !== "ROCK" && playerSelection !== "PAPER" && playerSelection !== "SCISSORS"){
+        //             playerSelection = prompt("Rock, Paper, or Scissors?").toUpperCase();
+        //         }
 
-                switch(console.log(playRound(playerSelection, computerSelection))){
-                    case "Tie Game!":
-                        break;
-                    case "Player Wins!":
-                        playerWins++;
-                        break;
-                    case "Player Loses :(":
-                        computerWins++;
-                        break;
-                }
-           }
+        //         switch(console.log(playRound(playerSelection, computerSelection))){
+        //             case "Tie Game!":
+        //                 break;
+        //             case "Player Wins!":
+        //                 playerWins++;
+        //                 break;
+        //             case "Player Loses :(":
+        //                 computerWins++;
+        //                 break;
+        //         }
+        //    }
 
-           if(playerWins > computerWins){
-                return "Player wins the round of 5!";
-           }
-           if(playerWins < computerWins){
-                return "Computer wins the round of 5 :(";
-           }
-           if(playerWins === computerWins){
-                return "Round of 5 was tied";
-           }
-        }
+        //    if(playerWins > computerWins){
+        //         return "Player wins the round of 5!";
+        //    }
+        //    if(playerWins < computerWins){
+        //         return "Computer wins the round of 5 :(";
+        //    }
+        //    if(playerWins === computerWins){
+        //         return "Round of 5 was tied";
+        //    }
+        // }
 
         //const computerSelection = getComputerChoice();
-        console.log(game());
+        // console.log(game());
     </script>
 </body>
 </html>
