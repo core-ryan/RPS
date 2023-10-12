@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let choices = ["ROCK","PAPER","SCISSORS"];
+
+        function getComputerChoice(){
+            return choices[(Math.floor(Math.random() * choices.length))];
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            // your code here!
+            console.log("Computer chooses: " + computerSelection);
+
+            switch (playerSelection){
+                case "ROCK":
+                    if(computerSelection === "ROCK"){
+                        return "Tie Game!";
+                    }
+                    if(computerSelection === "PAPER"){
+                        return "Player Loses :(";
+                    }
+                    if(computerSelection === "SCISSORS"){
+                        return "Player Wins!";
+                    }
+                case "PAPER":
+                    if(computerSelection === "ROCK"){
+                        return "Player Wins!";
+                    }
+                    if(computerSelection === "PAPER"){
+                        return "Tie Game!";
+                    }
+                    if(computerSelection === "SCISSORS"){
+                        return "Player Loses :(";
+                    }
+                case "SCISSORS":
+                    if(computerSelection === "ROCK"){
+                        return "Player Loses :(";
+                    }
+                    if(computerSelection === "PAPER"){
+                        return "Player Wins!";
+                    }
+                    if(computerSelection === "SCISSORS"){
+                        return "Tie Game!";
+                    }
+            }
+                
+        }
+ 
+        function game(){
+            let playerWins = 0;
+            let computerWins = 0;
+
+            for(let i = 0; i < 5; i++){
+                let playerSelection = "Invalid";
+                let computerSelection = getComputerChoice();
+                //const playerSelection = "rock";
+                while(playerSelection !== "ROCK" && playerSelection !== "PAPER" && playerSelection !== "SCISSORS"){
+                    playerSelection = prompt("Rock, Paper, or Scissors?").toUpperCase();
+                }
+
+                switch(console.log(playRound(playerSelection, computerSelection))){
+                    case "Tie Game!":
+                        break;
+                    case "Player Wins!":
+                        playerWins++;
+                        break;
+                    case "Player Loses :(":
+                        computerWins++;
+                        break;
+                }
+           }
+
+           if(playerWins > computerWins){
+                return "Player wins the round of 5!";
+           }
+           if(playerWins < computerWins){
+                return "Computer wins the round of 5 :(";
+           }
+           if(playerWins === computerWins){
+                return "Round of 5 was tied";
+           }
+        }
+
+        //const computerSelection = getComputerChoice();
+        console.log(game());
+    </script>
+</body>
+</html>
