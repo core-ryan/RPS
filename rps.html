@@ -52,15 +52,22 @@
             if(playerWins == 5){
                 finalAnnoucement.innerHTML = "PLAYER WINS BEST OF 5";
                 playerWins = 0;
+                computerWins = 0;
+                computerWinsCounter.innerHTML = computerWins;
+                playerWinsCounter.innerHTML = playerWins;
             }
             if(computerWins == 5){
                 finalAnnoucement.innerHTML = "COMPUTER WINS BEST OF 5";
+                playerWins = 0;
                 computerWins = 0;
+                computerWinsCounter.innerHTML = computerWins;
+                playerWinsCounter.innerHTML = playerWins;
             }
         }
 
         function playRound(playerSelection, computerSelection) {
             // your code here!
+            finalAnnoucement.innerHTML = "";
 
             resultWindowTop.innerHTML = "Player Chooses: " + playerSelection;
             resultWindowBottom.innerHTML = "Computer chooses: " + computerSelection;
