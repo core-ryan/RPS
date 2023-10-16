@@ -12,12 +12,31 @@
         <button id="paperButton">PAPER</button>
         <button id="scissorsButton">SCISSORS</button>
     </div>
+    <div style="border-radius: 10px; border-color: black;">
+        <h1 id="resultWindowTop">Select a choice above</h1>
+        <h1 id="resultWindowBottom"></h1>
+        <h3>Player Wins:</h3>
+        <h3 id="playerScoreWindow">0</h3>
+        <h3>Computer Wins:</h3>
+        <h3 id="computerScoreWindow">0</h3>
+        <h3 id="finalAnnoucement" style="color: red;"></h3>
+    </div>
     <script>
         let choices = ["ROCK","PAPER","SCISSORS"];
+        let playerWins = 0;
+        let computerWins = 0;
+
+        const playerWinsCounter = document.getElementById("playerScoreWindow");
+        const computerWinsCounter = document.getElementById("computerScoreWindow");
 
         const rockSelection = document.getElementById("rockButton");
         const paperSelection = document.getElementById("paperButton");
         const scissorsSelection = document.getElementById("scissorsButton");
+
+        const resultWindowTop = document.getElementById("resultWindowTop");
+        const resultWindowBottom = document.getElementById("resultWindowBottom");
+
+        const finalAnnoucement = document.getElementById("finalAnnoucement");
 
         let compChoiceResult = getComputerChoice();
 
@@ -29,8 +48,23 @@
             return choices[(Math.floor(Math.random() * choices.length))];
         }
 
+        function checkForGameWinner(){
+            if(playerWins == 5){
+                finalAnnoucement.innerHTML = "PLAYER WINS BEST OF 5";
+                playerWins = 0;
+            }
+            if(computerWins == 5){
+                finalAnnoucement.innerHTML = "COMPUTER WINS BEST OF 5";
+                computerWins = 0;
+            }
+        }
+
         function playRound(playerSelection, computerSelection) {
             // your code here!
+
+            resultWindowTop.innerHTML = "Player Chooses: " + playerSelection;
+            resultWindowBottom.innerHTML = "Computer chooses: " + computerSelection;
+
             console.log("Player Chooses: " + playerSelection);
             console.log("Computer chooses: " + computerSelection);
 
@@ -40,26 +74,44 @@
                         return "Tie Game!";
                     }
                     if(computerSelection === "PAPER"){
+                        computerWins++;
+                        computerWinsCounter.innerHTML = computerWins;
+                        checkForGameWinner();
                         return "Player Loses :(";
                     }
                     if(computerSelection === "SCISSORS"){
+                        playerWins++;
+                        playerWinsCounter.innerHTML = playerWins;
+                        checkForGameWinner();
                         return "Player Wins!";
                     }
                 case "PAPER":
                     if(computerSelection === "ROCK"){
+                        playerWins++;
+                        playerWinsCounter.innerHTML = playerWins;
+                        checkForGameWinner();
                         return "Player Wins!";
                     }
                     if(computerSelection === "PAPER"){
                         return "Tie Game!";
                     }
                     if(computerSelection === "SCISSORS"){
+                        computerWins++;
+                        computerWinsCounter.innerHTML = computerWins;
+                        checkForGameWinner();
                         return "Player Loses :(";
                     }
                 case "SCISSORS":
                     if(computerSelection === "ROCK"){
+                        computerWins++;
+                        computerWinsCounter.innerHTML = computerWins;
+                        checkForGameWinner();
                         return "Player Loses :(";
                     }
                     if(computerSelection === "PAPER"){
+                        playerWins++;
+                        playerWinsCounter.innerHTML = playerWins;
+                        checkForGameWinner();
                         return "Player Wins!";
                     }
                     if(computerSelection === "SCISSORS"){
@@ -68,6 +120,10 @@
             }
                 
         }
+
+
+
+
  
         // function game(){
         //     let playerWins = 0;
